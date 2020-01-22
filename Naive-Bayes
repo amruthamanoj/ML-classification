@@ -1,0 +1,23 @@
+import seaborn as sns
+
+iris = sns.load_dataset("iris")
+y= iris.iloc[:,4]
+x = iris.iloc[:,0:4]
+l = [iris.petal_length, iris.petal_width]
+
+#sns.boxplot(iris.species,iris.petal_width)
+#sns.boxplot(iris.species,iris.petal_length)
+#sns.boxplot(iris.species,iris.sepal_length)
+#sns.boxplot(iris.species,iris.sepal_width)
+
+from sklearn.model_selection import train_test_split # Import train_test_split function
+from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
+import seaborn as sns
+X_train,X_test,y_train,y_test=train_test_split(x,y,test_size=0.3)
+from sklearn.naive_bayes import GaussianNB
+model = GaussianNB()
+model.fit(X_train,y_train)
+y1 = model.predict(X_test)
+from sklearn import metrics
+
+metrics.accuracy_score(y_test,y1)
