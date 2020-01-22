@@ -14,7 +14,7 @@ X2 = data[['f2']]
 X3 = data.iloc[:,0:2]
 Y= data[['class']]
 
-model = DecisionTreeClassifier(criterion='entropy')
+model = DecisionTreeClassifier(criterion='entropy') #alternatively try 'gini'
 
 model.fit(X1,Y)
 y1 = model.predict(X1)
