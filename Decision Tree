@@ -1,0 +1,21 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from pandas_profiling import ProfileReport
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeClassifier
+
+#data = pd.read_csv("your_data")
+
+X1 = data[['f1']]    #specify ur variables
+X2 = data[['f2']]
+X3 = data.iloc[:,0:2]
+Y= data[['class']]
+
+model = DecisionTreeClassifier(criterion='entropy')
+
+model.fit(X1,Y)
+y1 = model.predict(X1)
+print('acc f1:' , metrics.accuracy_score(Y,y1))
