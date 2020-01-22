@@ -1,0 +1,26 @@
+import numpy as np
+import pandas as pd
+from pandas_profiling import ProfileReport
+import matplotlib.pyplot as plt
+from sklearn import metrics
+from sklearn.model_selection import train_test_split 
+
+import seaborn as sns
+
+iris = sns.load_dataset("iris")
+
+X = iris.iloc[:,0:4]
+Y = iris.iloc[:,4]
+
+#plt.figure(figsize = (7,7), facecolor = "pink")
+#sns.scatterplot(x = "petal_length", y="petal_width", hue="species", data=iris)
+#plt.scatter(X_test[y_test == 'setosa'].iloc[0,2], X_test[y_test=='setosa'].iloc[0,3], label='test', color='black')
+#plt.scatter(X_test[y_test == 'virginica'].iloc[0,2], X_test[y_test=='virginica'].iloc[0,3], label='test', color='blue')
+
+X_train,X_test,y_train,y_test=train_test_split(X,Y,test_size=0.3)
+from sklearn.neighbors import KNeighborsClassifier
+
+model = KNeighborsClassifier()
+model.fit(X_train,y_train)
+y1 = model.predict(X_test)
+print("accu:",metrics.accuracy_score(y_test,y1))
