@@ -1,0 +1,23 @@
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+df = pd.read_csv("diabetes.csv")
+X=df[['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin','BMI', 'DiabetesPedigreeFunction', 'Age']]
+
+y=df['Outcome']
+
+#alternately use iloc
+
+model = LogisticRegression()
+model.fit(X_train,y_train)
+pred = model.predict(X_test)
+print("intercept = ,model.intercept_)
+print("coeff = ,model.coef_)
+
+from sklearn import metrics
+cnf_matrix = metrics.confusion_matrix(y_test,pred)
+
+
+print("Accuracy:",metrics.accuracy_score(y_test, pred))
+print("Precision:",metrics.precision_score(y_test, pred))
