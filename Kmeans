@@ -1,0 +1,17 @@
+import pandas as pd
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+iris=sns.load_dataset("iris")
+scaler = MinMaxScaler()
+iris_scaled = scaler.fit_transform(iris.iloc[:,:-1])
+model = KMeans(n_clusters=3, max_iter=600, algorithm = 'auto',init="k-means++")
+
+model.fit(iris_scaled)
+pred=model.predict(iris_scaled)
+print(model.cluster_centers_)
