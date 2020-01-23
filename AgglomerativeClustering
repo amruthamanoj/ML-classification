@@ -1,0 +1,25 @@
+from scipy.cluster.hierarchy import dendrogram, linkage
+from scipy.spatial.distance import pdist
+from matplotlib import pyplot as plt
+from sklearn.cluster import AgglomerativeClustering
+
+
+iris=sns.load_dataset("iris")
+scaler = MinMaxScaler()
+iris_scaled = scaler.fit_transform(iris.iloc[:,:-1])
+
+xdist=pdist(iris_scaled,metric="euclidean")
+
+linked = linkage(xdist, 'ward')
+
+plt.figure(figsize=(10, 7))
+dendrogram(linked,
+            orientation='top',
+            distance_sort='descending',
+            show_leaf_counts=True)
+plt.show()
+
+
+cluster = AgglomerativeClustering(n_clusters=3, affinity="euclidean", linkage='ward')
+cluster.fit_predict(iris_scaled)
+
